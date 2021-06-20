@@ -1,16 +1,47 @@
+
 html,
 body {
   padding: 0;
   margin: 0;
+  color: var(--bianco);
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+:root {
+  --luminosity:255;
+  --bianco: rgb(var(--luminosity), var(--luminosity), var(--luminosity));
+  --dark: calc(calc(var(--luminosity) - 255) * (-1));
+  --nero: rgb(var(--dark), var(--dark), var(--dark));
+  --nsecondi: 0.225s;
+  --nuBelluVerde: #9dff1d;
+  --nuBelluGrigio: #131313;
+  --nuBelluGrigioChiaro: #a1a1a1;
+  --radius: 8px;
 }
 
-* {
-  box-sizing: border-box;
+
+
+body {
+  background-color: var(--bianco);
 }
+
+
+svg {
+  fill: var(--bianco);
+}
+
+
+
+nav {
+
+
+  background-color: rgba(var(--dark), var(--dark), var(--dark), 0.99);
+  padding: 30px 30px;
+
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  backdrop-filter: saturate(140%) blur(10px);
+
+
+}
+
