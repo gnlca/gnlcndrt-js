@@ -1,17 +1,42 @@
 import React from "react";
 import Image from "next/image";
 
+import Link from "next/link";
+
 import Logo from "../public/logo.svg";
 
 export default function Navbar() {
   return (
-    <nav className="inlineGrid alignCenter col2auto sticky">
-      <Logo fill="var(--Bianco)" width={100} />
-      <ul className="inlineGrid col3auto colGap05 noList inline noMarginPadding">
-        <li><a>blog</a></li>
-        <li><a>projects</a></li>
-        <li><a>projects</a></li>
-      </ul>
+    <nav className="Navbar sticky ">
+      <div className="flex spaceBetween alignCenter mxAuto ">
+        <Link href="/">
+          <a className="noLink flex alignCenter">
+            <Logo className="" fill="var(--Bianco)" width={100} />
+          </a>
+        </Link>
+        <ul className="inlineGrid center col4auto colGap07 noList inline noMarginPadding">
+          <li>
+            <Link href="/about">
+              <a className="noLink">about</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog">
+              <a className="noLink">blog</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/projects">
+              <a className="noLink ">projects</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/contact">
+              <a className="noLink">contact</a>
+            </Link>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 }
