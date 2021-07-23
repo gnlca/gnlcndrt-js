@@ -1,11 +1,22 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import { React, useEffect, useState } from "react";
+import Head from 'next/head';
+import Image from 'next/image';
 
-
-
+import { getPosts } from "../lib/notion"
 
 
 export default function Home() {
+
+
+
+  useEffect(() => {
+
+
+  }, [])
+
+
+
+
   return (
     <div >
       <Head>
@@ -19,11 +30,11 @@ export default function Home() {
         <div className="grid center fullHeight">
           ciccio
         </div>
-        
+
       </main>
 
       <footer>
-      
+
       </footer>
     </div>
   )
