@@ -1,12 +1,13 @@
 import { React, useEffect, useState } from "react";
+import Link from 'next/link'
 import { Client } from "@notionhq/client";
 
-import { getPosts } from "../lib/notion";
+import { databaseId, getPosts } from "../lib/notion";
 
 
 export async function getStaticProps() {
 
-  const posts = await getPosts();
+  const posts = await getPosts(databaseId);
   console.log(posts);
 
   return ({
@@ -25,9 +26,9 @@ export default function Blog({ posts }) {
 
     // Reduce function invece di iterare con loop for 
     // USO  .reduce((accumulator, currentValue, index, array) => { ... }, initialValue)
-    // const titles = articoli.results.reduce((ac,p)=>[...ac, p.properties.Name.title[0].plain_text],[]);
+    const titles = articoli.results.reduce((ac,p)=>({...ac, [p.properties.Name.title[0].plain_text]: p.id}),{});
 
-    const titles = articoli.results.map((p) => p.properties.Name.title[0].plain_text); //oppure uso map e facc primm
+    // const titles = articoli.results.map((p) => p.properties.Name.title[0].plain_text); //oppure uso map e facc primm
     console.log(titles);
     return (titles);
   };
@@ -44,7 +45,10 @@ export default function Blog({ posts }) {
 
         {
           (postTitles) ?
-            <ul>{postTitles.map((titolo, index) => (<li key={index}>{titolo}</li>))}</ul>
+            <ul>{Object.keys(postTitles).map((titolo, index) => (
+              // // <Link href={`/blog/${post.id}`}><li key={index}>{titolo}</li></Link>
+              <li key={index}>{titolo}</li>
+            ))}</ul>
             : null
         }
       </div>
