@@ -4,7 +4,7 @@ import { Client } from "@notionhq/client";
 import { getPosts } from "../lib/notion";
 
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
 
   const posts = await getPosts();
   console.log(posts);
