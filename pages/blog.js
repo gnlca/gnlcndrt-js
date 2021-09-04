@@ -26,9 +26,9 @@ export default function Blog({ posts }) {
 
     // Reduce function invece di iterare con loop for 
     // USO  .reduce((accumulator, currentValue, index, array) => { ... }, initialValue)
-    const titles = articoli.results.reduce((ac,p)=>({...ac, [p.properties.Name.title[0].plain_text]: p.id}),{});
+    const titles = articoli.reduce((ac,p)=>({...ac, [p.properties.Name.title[0].plain_text]: p.id}),{});
 
-    // const titles = articoli.results.map((p) => p.properties.Name.title[0].plain_text); //oppure uso map e facc primm
+    // const titles = articoli.map((p) => p.properties.Name.title[0].plain_text); //oppure uso map e facc primm
     console.log(titles);
     return (titles);
   };
@@ -46,8 +46,8 @@ export default function Blog({ posts }) {
         {
           (postTitles) ?
             <ul>{Object.keys(postTitles).map((titolo, index) => (
-              // // <Link href={`/blog/${post.id}`}><li key={index}>{titolo}</li></Link>
-              <li key={index}>{titolo}</li>
+              <Link key={index} href={`/blog/${postTitles[titolo]}`}><li key={index}>{titolo}</li></Link>
+              // <li key={index}>{titolo}</li>
             ))}</ul>
             : null
         }

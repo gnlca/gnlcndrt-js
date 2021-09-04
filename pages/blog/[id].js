@@ -1,11 +1,15 @@
 import { React, useEffect, useState } from "react";
-import { databaseId, getPosts, getPage, getPageData, getBlocks } from "@/lib/notion";
+import { databaseId, getPosts, getPage, getPageData, getBlocks } from "../../lib/notion";
 
-import TextBlock from "@/components/TextBlock"
+import TextBlock from "../../components/TextBlock"
 
 
-const Post = ({ post, blocks }) => {
-
+export default function Post({ post, blocks }) {
+    console.log(post);
+    console.log(blocks);
+    return(<div className="Post">
+        <br/><br/><br/><h1>andato</h1>
+    </div>)
 
 
 }
