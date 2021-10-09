@@ -2,14 +2,15 @@ import { React, useEffect, useState } from "react";
 import Link from 'next/link'
 import { Client } from "@notionhq/client";
 
-import { databaseId, getPosts } from "../lib/notion";
+// import { databaseId, getPosts } from "../lib/notion";
 
+import * as notion from "../lib/notion"
 
 export async function getStaticProps() {
 
-  const posts = await getPosts(databaseId);
+  const posts = await notion.getPosts(notion.databaseId);
   console.log(posts);
-
+  
   return ({
     props: { posts },
 
@@ -20,22 +21,10 @@ export async function getStaticProps() {
 export default function Blog({ posts }) {
   const [postTitles, setPostTitles] = useState();
 
-  const titoliPosts = (articoli) => {
-    let titoli = [];
-
-
-    // Reduce function invece di iterare con loop for 
-    // USO  .reduce((accumulator, currentValue, index, array) => { ... }, initialValue)
-    const titles = articoli.reduce((ac,p)=>({...ac, [p.properties.Name.title[0].plain_text]: p.id}),{});
-
-    // const titles = articoli.map((p) => p.properties.Name.title[0].plain_text); //oppure uso map e facc primm
-    console.log(titles);
-    return (titles);
-  };
 
   useEffect(() => {
     console.log(posts);
-    setPostTitles(titoliPosts(posts))
+    setPostTitles(notion.formatPostsToIds(posts))
   }, []);
 
   return (
