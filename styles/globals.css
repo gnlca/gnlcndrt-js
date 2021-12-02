@@ -9,7 +9,7 @@ body {
 }
 
 :root {
-  --luminosity:0;
+  --luminosity:255;
   --bianco: rgb(var(--luminosity), var(--luminosity), var(--luminosity));
   --dark: calc(calc(var(--luminosity) - 255) * (-1));
   --nero: rgb(var(--dark), var(--dark), var(--dark));
