@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 import { TextBlock } from "./TextBlock"
 
 
@@ -47,6 +49,14 @@ export const parseBlock = (block) => {
         return (
           <li>
             <TextBlock nodes={block.bulleted_list_item.text} />
+          </li>
+        )
+      }
+
+      case "image": {
+        return (
+          <li>
+            <Image src={block.image.file.url} width="100vh" height="100vh" layout="responsive" objectFit="contain"/>
           </li>
         )
       }

@@ -75,3 +75,7 @@ nav ul {
 
 
 }
+
+Image {
+  z-index: -2000;
+}
