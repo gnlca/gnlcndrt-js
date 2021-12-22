@@ -2,7 +2,7 @@ import { React, useEffect, useState, Fragment } from "react";
 import { databaseId, getPosts, getPage, getPageData, getBlocks } from "../../lib/notion";
 
 import { TextBlock } from "../../components/TextBlock";
-import { parseBlock } from "../../components/parseBlock"
+import { renderBlock } from "../../components/renderBlock"
 
 export default function Post({ post, blocks }) {
     console.log(post);
@@ -12,7 +12,7 @@ export default function Post({ post, blocks }) {
         <div className="Post maxWidth42 mxAuto">
             <div className="content">
                 <h1><TextBlock nodes={post.properties.Name.title} /></h1>
-                {blocks.map((block) => (<Fragment key={block.id}>{parseBlock(block)}</Fragment>))}
+                {blocks.map((block) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
             </div>
         </div>
     )

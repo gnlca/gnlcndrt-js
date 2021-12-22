@@ -1,20 +1,20 @@
 
-import React from "react"
-import cx from "clsx"
+import React from "react";
+import cx from "clsx";
 
 export const TextBlock = ({ nodes }) => {
   if (!nodes) {
-    return null
+    return(null);
   }
 
   return nodes.map((value, index) => {
     const {
       annotations: { bold, italic, strikethrough, underline },
-      text,
-    } = value
+      text
+    } = value;
 
     if (bold || italic || strikethrough || underline || text.link) {
-      return (
+      return(
         <span
           key={index}
           className={cx({
@@ -24,15 +24,11 @@ export const TextBlock = ({ nodes }) => {
             underline: underline,
           })}
         >
-          {text.link ? (
-            <a href={text.link.url}>{text.content}</a>
-          ) : (
-            text.content
-          )}
+          {text.link ? (<a href={text.link.url}>{text.content}</a>) : (text.content)}
         </span>
       )
     }
 
-    return <React.Fragment key={index}>{text.content}</React.Fragment> //uguale a <></>
+    return(<React.Fragment key={index}>{text.content}</React.Fragment>); //uguale a <></>
   })
 }
