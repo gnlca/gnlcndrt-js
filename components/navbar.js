@@ -15,21 +15,21 @@ export default function Navbar() {
           </a>
         </Link>
         <ul className="inlineGrid center col4auto colGap07 noList inline noMarginPadding">
-          <li>
+          {/* <li>
             <Link href="/about">
               <a className="noLink">about</a>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link href="/blog">
               <a className="noLink">blog</a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href="/projects">
               <a className="noLink ">projects</a>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link href="/contact">
               <a className="noLink">contact</a>

@@ -53,13 +53,13 @@ export const renderBlock = (block) => {
       if (block.image.type == "file") {
         return (
           <div className="Image">
-            <img src={block.image.file.url} />
+            <img src={block.image.file.url} alt=" "/>
           </div>
         )
       } else if (block.image.type == "external") {
         return (
           <div className="Image">
-            <img src={block.image.external.url} />
+            <img src={block.image.external.url} alt=" "/>
           </div>
         )
       }

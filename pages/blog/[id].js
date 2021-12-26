@@ -12,7 +12,7 @@ export default function Post({ post, blocks }) {
         <div className="Post maxWidth42 mxAuto">
             <div className="content">
                 <h1><TextBlock nodes={post.properties.Name.title} /></h1>
-                {blocks.map((block) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
+                {blocks.map((block) => (<div key={block.id}>{renderBlock(block)}</div>))}
             </div>
         </div>
     )

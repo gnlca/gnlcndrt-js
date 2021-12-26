@@ -9,7 +9,7 @@ body {
 }
 
 :root {
-  --luminosity:0;
+  --luminosity:255;
   --bianco: rgb(var(--luminosity), var(--luminosity), var(--luminosity));
   --dark: calc(calc(var(--luminosity) - 255) * (-1));
   --nero: rgb(var(--dark), var(--dark), var(--dark));
@@ -26,6 +26,10 @@ body {
 
 body {
   background-color: var(--nero);
+  /* background: radial-gradient(var(--nuBelluGrigio) 37%, var(--nero) 60%)
+    no-repeat center center fixed;
+  background-size: 400% 400%;
+  background-position: 50% 0%; */
   color: var(--bianco);
   fill: var(--bianco);
 }
