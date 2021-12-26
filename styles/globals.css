@@ -9,7 +9,7 @@ body {
 }
 
 :root {
-  --luminosity:255;
+  --luminosity:0;
   --bianco: rgb(var(--luminosity), var(--luminosity), var(--luminosity));
   --dark: calc(calc(var(--luminosity) - 255) * (-1));
   --nero: rgb(var(--dark), var(--dark), var(--dark));
@@ -25,7 +25,6 @@ body {
 
 
 body {
-  
   background-color: var(--nero);
   color: var(--bianco);
   fill: var(--bianco);
@@ -33,7 +32,13 @@ body {
 
 
 .content {
-  margin: 6em 50px;
+  margin-top: 6em;
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
 }
 
 
@@ -49,7 +54,7 @@ nav {
 }
 
 nav  div {
-  padding: 40px 38px 40px 38px;
+  padding: 40px 2rem;
   max-width: 800px;
   transition-property: padding;
   transition: var(--nsecondi);
@@ -64,8 +69,26 @@ nav ul {
 
 
 
-Image {
-  z-index: -1;
+
+
+.Image {
+  padding: 1em 0em;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  color: #60a5fa;
+}
+
+
+.code {
+  background-color: rgba(var(--luminosity),var(--luminosity),var(--luminosity),0.1);
+  padding: 1.6rem 2rem;
+  border-radius: 8px;
+  
 }
 
 .videoContainer {
@@ -89,7 +112,7 @@ Image {
 @media only screen and (max-width: 768px) {
 
   nav  div {
-    padding: 30px 40px 30px 40px;
+    padding: 1.6rem 1.7rem;
   }
 
 

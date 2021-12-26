@@ -50,21 +50,51 @@ export const renderBlock = (block) => {
     }
 
     case "image": {
-      return (
-        <Image src={block.image.file.url} width="100vh" height="100vh" layout="responsive" objectFit="contain" />
-      )
+      if (block.image.type == "file") {
+        return (
+          <div className="Image">
+            <img src={block.image.file.url} />
+          </div>
+        )
+      } else if (block.image.type == "external") {
+        return (
+          <div className="Image">
+            <img src={block.image.external.url} />
+          </div>
+        )
+      }
     }
 
     case "video": {
-      return (
-        <div className="videoContainer">
-          <iframe className="video" width="560" height="315" src={block.video.external.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+
+      if (block.video.type == "file") {
+        return (
+          <div className="videoContainer">
+            <video className="video" controls>
+              <source src={block.video.file.url} type="video/mp4" />
+            </video>
+          </div>
+        )
+      } else if (block.video.type == "external") {
+        return (
+          <div className="videoContainer">
+            <iframe className="video" src={block.video.external.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          </div>
+        )
+      }
+    }
+
+    case "code": {
+      return(
+        <div className="code">
+          <TextBlock nodes={block.code.text} />
         </div>
       )
     }
 
+
     default: {
-      return("Unsupported block")
+      return ("Unsupported block")
     }
   }
 }

@@ -34,11 +34,11 @@ export default function Blog({ posts }) {
         {
           (postTitles) ?
             <ul>{Object.keys(postTitles).map((titolo, index) => (
-              <Link key={index} href={`/blog/${postTitles[titolo]}`} passHref>
-                <li key={index}>
+              <li key={index}>
+                <Link key={index} href={`/blog/${postTitles[titolo]}`} passHref>
                   <a onClick={() => console.log(`apro la pagina ${titolo}`)}>{titolo}</a>
-                </li>
-              </Link>
+                </Link>
+              </li>
             ))}</ul>
             : null
         }
