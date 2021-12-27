@@ -6,23 +6,24 @@ import { Client } from "@notionhq/client";
 import * as notion from "../lib/notion"
 
 export async function getStaticProps() {
-
+  const properties = await notion.getDatabase(notion.databaseId);
   const posts = await notion.getPosts(notion.databaseId);
+  console.log(properties);
   console.log(posts);
   
   return ({
-    props: { posts },
-
+    props: {properties, posts},
     revalidate: 10,
   });
 }
 
-export default function Blog({ posts }) {
+export default function Blog({ properties, posts }) {
   const [postTitles, setPostTitles] = useState();
 
 
   useEffect(() => {
     console.log(posts);
+    console.log(properties);
     setPostTitles(notion.formatPostsToIds(posts))
   }, [posts]);
 

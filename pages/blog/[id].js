@@ -1,5 +1,5 @@
 import { React, useEffect, useState, Fragment } from "react";
-import { databaseId, getPosts, getPage, getPageData, getBlocks } from "../../lib/notion";
+import * as notion from "../../lib/notion";
 
 import { TextBlock } from "../../components/TextBlock";
 import { renderBlock } from "../../components/renderBlock"
@@ -20,8 +20,8 @@ export default function Post({ post, blocks }) {
 
 
 export async function getStaticProps({ params: { id } }) {
-    const post = await getPage(id);
-    const blocks = await getPageData(id);
+    const post = await notion.getPage(id);
+    const blocks = await notion.getPageData(id);
 
     return {
         props: { post, blocks },
@@ -30,7 +30,7 @@ export async function getStaticProps({ params: { id } }) {
 }
 
 export async function getStaticPaths() {
-    const posts = await getPosts(databaseId);
+    const posts = await notion.getPosts(notion.databaseId);
     
     return ({
         paths: posts.map((post) => ({ params: { id: post.id } })),
