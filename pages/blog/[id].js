@@ -2,7 +2,7 @@ import { React, useEffect, useState, Fragment } from "react";
 import * as notion from "../../lib/notion";
 
 import { TextBlock } from "../../components/TextBlock";
-import { renderBlock } from "../../components/renderBlock"
+import { renderBlock } from "../../lib/renderBlock"
 
 export default function Post({ post, blocks }) {
     console.log(post);
@@ -12,7 +12,8 @@ export default function Post({ post, blocks }) {
         <div className="Post maxWidth42 mxAuto">
             <div className="content">
                 <h1><TextBlock nodes={post.properties.Name.title} /></h1>
-                {blocks.map((block) => (<div key={block.id}>{renderBlock(block)}</div>))}
+                <span>Last edit: {post.last_edited_time.split('T')[0]}</span>
+                {blocks.map((block) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}
             </div>
         </div>
     )

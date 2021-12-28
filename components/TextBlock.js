@@ -11,7 +11,7 @@ export const TextBlock = ({ nodes }) => {
     const {
       annotations: { bold, italic, strikethrough, underline },
       text
-    } = value;
+    } = value; //Object destructuring
 
     if (bold || italic || strikethrough || underline || text.link) {
       return(
