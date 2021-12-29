@@ -6,19 +6,55 @@ import { Client } from "@notionhq/client";
 import * as notion from "../lib/notion";
 import * as utils from "../lib/utils";
 
+
+
 export async function getStaticProps() {
   const tags = utils.formatTags(await notion.getDatabase(notion.databaseId));
   const posts = utils.formatPostsToIds(await notion.getPosts(notion.databaseId));
-  
+
   return ({
-    props: {tags, posts},
+    props: { tags, posts },
     revalidate: 10,
   });
 }
 
+
+
 export default function Blog({ tags, posts }) {
   const [postTitles, setPostTitles] = useState();
   const [postTags, setPostTags] = useState();
+  const [activeTags, setActiveTags] = useState([]);
+
+
+  
+  
+  
+  const filterPosts = async () => {
+    let url = "/api/notionApi?"+ activeTags.map(tag=>"tags="+tag).join('&');
+    console.log(`the api url is ${url}`)
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data);
+
+
+  }
+
+
+
+
+  async function handleTags(tag) {
+    let e = activeTags.indexOf(tag)
+    if (e == -1) {
+      await setActiveTags([...activeTags, tag])
+    } else {
+      await setActiveTags(activeTags.filter(t => (t != tag)))
+    }
+  }
+
+
+  useEffect(()=>{
+    filterPosts();
+  },[activeTags])
 
 
   useEffect(() => {
@@ -32,14 +68,15 @@ export default function Blog({ tags, posts }) {
     <div className="Blog maxWidth42 mxAuto">
       <div className="content">
         <h1>Blog</h1>
-        
+
         {(postTags) ?
 
-          <ul>
+          <div className="tags">
+            <button className={activeTags.length == 0 ? "tagCleaner hidden" : "tagCleaner"} onClick={() => setActiveTags([])}>&#10005;</button>
             {postTags.map((tag) => (
-              <li key={tag.id} className="tag noList">{tag.name}</li>
+              <button key={tag.id} className={activeTags.indexOf(tag.name) == -1 ? "tag" : "tag tagActive"} type="button" onClick={() => handleTags(tag.name)}>{tag.name}</button>
             ))}
-          </ul>
+          </div>
           : null}
 
         {

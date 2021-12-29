@@ -41,6 +41,10 @@
   list-style: none;
 }
 
+.hidden {
+  display: none;
+}
+
 .inline li {
   display: inline;
 }

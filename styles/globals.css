@@ -88,8 +88,30 @@ a {
 }
 
 .tag {
+  background: none;
+  color: var(--bianco);
+  border: 2px solid rgb(var(--luminosity), var(--luminosity), var(--luminosity));
+  border-radius: 28px;
   display: inline-block;
-  padding: .5rem .5rem;
+  padding: .5rem 1em;
+  margin: .5em 1em .5em 0;
+  cursor: pointer;
+}
+
+.tagActive {
+  border: 2px solid rgb(136, 255, 56);
+}
+
+.tagCleaner {
+  background: none;
+  color: var(--bianco);
+  border: 2px solid rgb(var(--luminosity), var(--luminosity), var(--luminosity));
+  border-radius: 28px;
+  display: inline-block;
+  padding: .5rem 1em;
+  margin: .5em 1em .5em 0;
+  cursor: pointer;
+  
 }
 
 .code {
