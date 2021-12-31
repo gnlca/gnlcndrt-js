@@ -1,6 +1,8 @@
-import { React, useEffect, useState } from "react";
+import { React, useCallback, useEffect, useMemo, useState } from "react";
 import Link from 'next/link';
 import { Client } from "@notionhq/client";
+
+import { useFetch } from "../components/useFetch";
 
 // import { databaseId, getPosts } from "../lib/notion";          
 import * as notion from "../lib/notion";
@@ -19,50 +21,37 @@ export async function getStaticProps() {
 }
 
 
-
 export default function Blog({ tags, posts }) {
-  const [postTitles, setPostTitles] = useState();
-  const [postTags, setPostTags] = useState();
+  const [postTitles, setPostTitles] = useState(posts);
+  const [postTags, setPostTags] = useState(tags);
   const [activeTags, setActiveTags] = useState([]);
-
+  // const { data } 
 
   
-  
-  
-  const filterPosts = async () => {
-    let url = "/api/notionApi?"+ activeTags.map(tag=>"tags="+tag).join('&');
-    console.log(`the api url is ${url}`)
-    const res = await fetch(url);
-    const data = await res.json();
-    console.log(data);
-
-
-  }
-
 
 
 
   async function handleTags(tag) {
     let e = activeTags.indexOf(tag)
     if (e == -1) {
-      await setActiveTags([...activeTags, tag])
+      setActiveTags([...activeTags, tag])
     } else {
-      await setActiveTags(activeTags.filter(t => (t != tag)))
+      setActiveTags(activeTags.filter(t => (t != tag)))
     }
   }
 
 
-  useEffect(()=>{
-    filterPosts();
-  },[activeTags])
-
-
   useEffect(() => {
-    console.log(tags);
-    console.log(posts);
-    setPostTags(tags);
-    setPostTitles(posts);
-  }, [tags, posts]);
+    utils.filteredPosts(activeTags).then(res => setPostTitles(res));
+  }, [activeTags])
+
+
+  // useEffect(() => {
+  //   console.log(tags);
+  //   console.log(posts);
+  //   // setPostTags(tags);
+  //   // setPostTitles(posts);
+  // }, [tags, posts]);
 
   return (
     <div className="Blog maxWidth42 mxAuto">
