@@ -4,7 +4,7 @@ import * as notion from "../../lib/notion";
 
 export default async function notionApi(req, res) {
 
-  const posts = await notion.getPostsByTag(notion.databaseId,   (typeof req.query.tags == "string" &&  [ req.query.tags ] ) || req.query.tags);
+  const posts = await notion.getPosts(notion.databaseId,  (typeof req.query.tags == "string" &&  [ req.query.tags ] ) || req.query.tags);
 
   res.status(200).json(posts);
   
