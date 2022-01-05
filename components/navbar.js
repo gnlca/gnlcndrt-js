@@ -10,8 +10,8 @@ export default function Navbar() {
     <nav className="Navbar sticky ">
       <div className="flex spaceBetween alignCenter mxAuto ">
         <Link href="/">
-          <a className="noLink flex alignCenter">
-            <Logo className="" fill="var(--Bianco)" width={100} />
+          <a className="flex noLink alignCenter">
+            <Logo className="" fill="var(--Bianco)" width={85} />
           </a>
         </Link>
         <ul className="inlineGrid center col4auto colGap07 noList inline noMarginPadding">

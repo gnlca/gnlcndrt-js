@@ -149,6 +149,14 @@
   align-items: center;
 }
 
+.alignSelf {
+  align-self: center;
+}
+
+.alignContent {
+  align-content: center;
+}
+
 .justifyCenter {
   justify-self: center;
 }

@@ -1,4 +1,4 @@
-import { React, useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Link from 'next/link';
 import { Client } from "@notionhq/client";
 
@@ -19,6 +19,9 @@ export async function getStaticProps() {
     revalidate: 10,
   });
 }
+
+
+
 
 
 export default function Blog({ tags, posts }) {
@@ -44,6 +47,7 @@ export default function Blog({ tags, posts }) {
   useEffect(() => {
     utils.filteredPosts(activeTags).then(res => setPostTitles(res));
   }, [activeTags])
+
 
 
   // useEffect(() => {
