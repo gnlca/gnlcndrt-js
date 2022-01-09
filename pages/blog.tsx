@@ -11,8 +11,16 @@ import * as utils from "../lib/utils";
 
 
 export async function getStaticProps() {
-  const tags = utils.formatTags(await notion.getDatabase(notion.databaseId));
+  let tags = utils.formatTags(await notion.getDatabase(notion.databaseId));
   const posts = utils.formatPostsToIds(await notion.getPosts(notion.databaseId));
+  // var categories = await tags.map(async (tag) =>({ [tag.name] : (await notion.getPosts(notion.databaseId,[tag.name]))}));
+  
+  for (let i = 0; i < tags.length; i++) {
+    tags[i].posts = await notion.getPosts(notion.databaseId, [tags[i].name])
+  }
+  // tags.map( (tag,id) => console.log(tag.name) );
+  let postsFromTags = utils.formatPostsToIds(tags.reduce((p,c)=>[...p, ...c.posts],[]))
+  console.log(postsFromTags);
 
   return ({
     props: { tags, posts },
@@ -21,16 +29,11 @@ export async function getStaticProps() {
 }
 
 
-
-
-
 export default function Blog({ tags, posts }) {
   const [postTitles, setPostTitles] = useState(posts);
   const [postTags, setPostTags] = useState(tags);
   const [activeTags, setActiveTags] = useState([]);
   // const { data } 
-
-  
 
 
 
@@ -45,17 +48,19 @@ export default function Blog({ tags, posts }) {
 
 
   useEffect(() => {
-    utils.filteredPosts(activeTags).then(res => setPostTitles(res));
+    utils.getFilteredPosts(activeTags).then(res => setPostTitles(res));
+    // setPostTitles(utils.formatPostsToIds(tags.filter(tag => activeTags.includes(tag.name)).reduce((a,p)=>([...a, ...p.posts]),[])));
+    
   }, [activeTags])
 
 
 
-  // useEffect(() => {
-  //   console.log(tags);
-  //   console.log(posts);
-  //   // setPostTags(tags);
-  //   // setPostTitles(posts);
-  // }, [tags, posts]);
+  useEffect(() => {
+    console.log(tags);
+    // console.log(posts);
+    // setPostTags(tags);
+    // setPostTitles(posts);
+  }, [tags, posts]);
 
   return (
     <div className="Blog maxWidth42 mxAuto">
