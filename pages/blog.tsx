@@ -48,9 +48,10 @@ export default function Blog({ tags, posts }) {
 
 
   useEffect(() => {
-    utils.getFilteredPosts(activeTags).then(res => setPostTitles(res));
-    // setPostTitles(utils.formatPostsToIds(tags.filter(tag => activeTags.includes(tag.name)).reduce((a,p)=>([...a, ...p.posts]),[])));
+    // utils.getFilteredPosts(activeTags).then(res => setPostTitles(res));
     
+    if (activeTags.length != 0) setPostTitles(utils.formatPostsToIds(tags.filter(tag => activeTags.includes(tag.name)).reduce((a, p) => ([...a, ...p.posts]), [])));
+
   }, [activeTags])
 
 
@@ -70,7 +71,7 @@ export default function Blog({ tags, posts }) {
         {(postTags) ?
 
           <div className="tags">
-            <button className={activeTags.length == 0 ? "tagCleaner hidden" : "tagCleaner"} onClick={() => setActiveTags([])}>&#10005;</button>
+            <button className={activeTags.length == 0 ? "tagCleaner hidden" : "tagCleaner"} onClick={() => {setActiveTags([]);setPostTitles(posts)}}>&#10005;</button>
             {postTags.map((tag) => (
               <button key={tag.id} className={activeTags.indexOf(tag.name) == -1 ? "tag" : "tag tagActive"} type="button" onClick={() => handleTags(tag.name)}>{tag.name}</button>
             ))}
