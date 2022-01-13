@@ -88,31 +88,23 @@ a {
 }
 
 .tag {
-  background: none;
-  color: var(--bianco);
+  background: var(--bianco);
+  color: var(--nero);
   border: 2px solid rgb(var(--luminosity), var(--luminosity), var(--luminosity));
-  border-radius: 28px;
+  border-radius: 300px;
   display: inline-block;
-  padding: .5rem 1em;
-  margin: .5em 1em .5em 0;
+  padding: .5rem 1.5em;
+  margin: .5em .6em .5em 0;
   cursor: pointer;
+  /* font-weight: bold; */
 }
 
 .tagActive {
   border: 2px solid rgb(136, 255, 56);
+  background: rgb(136, 255, 56);
 }
 
-.tagCleaner {
-  background: none;
-  color: var(--bianco);
-  border: 2px solid rgb(var(--luminosity), var(--luminosity), var(--luminosity));
-  border-radius: 28px;
-  display: inline-block;
-  padding: .5rem 1em;
-  margin: .5em 1em .5em 0;
-  cursor: pointer;
-  
-}
+
 
 .code {
   background-color: rgba(var(--luminosity),var(--luminosity),var(--luminosity),0.1);
