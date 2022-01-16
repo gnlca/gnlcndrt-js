@@ -44,7 +44,7 @@ export async function getStaticPaths() {
     const posts = await notion.getPosts(notion.databaseId);
     
     return ({
-        paths: posts.map((post) => ({ params: { id: `${post.properties.Name.title[0].plain_text.replaceAll(' ','-')}_${post.id}` } })),
+        paths: posts.map((post) => ({ params: { id: `${post.properties.Name.title[0].plain_text.replace(' ','-')}_${post.id}` } })),
         fallback: "blocking",
     });
 }
