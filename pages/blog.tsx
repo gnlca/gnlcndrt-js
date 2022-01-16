@@ -93,7 +93,7 @@ export default function Blog({ tags, posts }) {
         {(postsTitles) ?
           <ul>{postsTitles.map((titolo, index) => (
             <li key={index}>
-              <Link key={titolo.id} href={`/blog/${titolo.name.replace(' ','-')}_${titolo.id}`} passHref>
+              <Link key={titolo.id} href={`/blog/${titolo.name.replace(/\s+/g, '-')}_${titolo.id}`} passHref>
                 <a onClick={() => console.log(`apro la pagina ${titolo.name} con id ${titolo.id}`)}>{titolo.name}</a>
               </Link>
             </li>

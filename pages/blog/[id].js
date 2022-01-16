@@ -1,6 +1,6 @@
 import { React, useEffect, useState, Fragment } from "react";
 import * as notion from "../../lib/notion";
-import {formatDate} from  "../../lib/utils"
+import { formatDate } from "../../lib/utils"
 // import { useRouter } from "next/router" 
 
 import { TextBlock } from "../../components/TextBlock";
@@ -16,7 +16,7 @@ export default function Post({ post, blocks }) {
     // }
 
 
-    return(
+    return (
         <div className="Post maxWidth42 mxAuto">
             <div className="content">
                 <h1><TextBlock nodes={post.properties.Name.title} /></h1>
@@ -29,7 +29,7 @@ export default function Post({ post, blocks }) {
 
 
 export async function getStaticProps({ params: { id } }) {
-    const post = await notion.getPage(id.split('_').pop());    
+    const post = await notion.getPage(id.split('_').pop());
     const blocks = await notion.getPageData(id.split('_').pop());
 
     if (!post) return { notFound: true }
@@ -42,9 +42,9 @@ export async function getStaticProps({ params: { id } }) {
 
 export async function getStaticPaths() {
     const posts = await notion.getPosts(notion.databaseId);
-    
+
     return ({
-        paths: posts.map((post) => ({ params: { id: `${post.properties.Name.title[0].plain_text.replace(' ','-')}_${post.id}` } })),
+        paths: posts.map((post) => ({ params: { id: `${post.properties.Name.title[0].plain_text.replace(/\s+/g, '-')}_${post.id}` } })),
         fallback: "blocking",
     });
 }
