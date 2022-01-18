@@ -26,7 +26,7 @@ export default function Post({ post, blocks }) {
             <Head>
                 <title>NDRT - {post.properties.Name.title[0].plain_text}</title>
             </Head>
-            <div className="content">
+            <div className="content wrapWord">
                 <h1>{post.properties.Name.title[0].plain_text}</h1>
                 <span>{formatDate(post.last_edited_time)}</span>
                 {blocks.map((block) => (<Fragment key={block.id}>{renderBlock(block)}</Fragment>))}

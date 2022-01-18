@@ -222,3 +222,8 @@
 .flexGrow {
   flex-grow: 1;
 }
+
+
+.wrapWord {
+  word-wrap:break-word;
+}
