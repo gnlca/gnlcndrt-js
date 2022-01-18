@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Link from 'next/link';
-import { Client } from "@notionhq/client";
+import Head from 'next/head';
 
 import SearchBar from "../components/SearchBar";
+
+
 
 import * as notion from "../lib/notion";
 import * as utils from "../lib/utils";
@@ -73,19 +75,24 @@ export default function Blog({ tags, posts }) {
 
   return (
     <div className="Blog maxWidth42 mxAuto">
+      <Head>
+        <title>NDRT - Blog</title>
+      </Head>
       <div className="content">
 
         <h1>Blog</h1>
+  
 
         <SearchBar handleChange={(e) => setInputText(e.target.value)}></SearchBar>
+        <br />
 
         {/* TAGS */}
         {(postsTags) ?
           <div className="tags">
-            <button className={activeTags.length == 0 ? "tag hidden" : "tag"} onClick={() => { setActiveTags([]); setActivePosts(posts); }}>&#10005;</button>
             {postsTags.map((tag) => (
               <button key={tag.id} className={activeTags.indexOf(tag.name) == -1 ? "tag" : "tag tagActive"} type="button" onClick={() => handleTags(tag.name)}>{tag.name}</button>
             ))}
+            <button className={activeTags.length == 0 ? "tag hidden" : "tag"} onClick={() => { setActiveTags([]); setActivePosts(posts); }}>&#10005;</button>
           </div>
           : null}
 

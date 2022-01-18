@@ -3,11 +3,10 @@ import Head from 'next/head';
 import Image from 'next/image';
 
 import { getPosts } from "../lib/notion"
+import ThemeToggle from "../components/ThemeToggle"
 
 
 export default function Home() {
-
-
 
   return (
     <div >
@@ -18,15 +17,11 @@ export default function Home() {
       </Head>
 
       <main>
-
         <div className="grid center fullHeight">
-          ciccio
+          <p>ciccio</p>
         </div>
-
       </main>
-
       <footer>
-
       </footer>
     </div>
   )

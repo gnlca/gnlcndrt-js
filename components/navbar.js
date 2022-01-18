@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Logo from "../public/logo.svg";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   return (
@@ -35,6 +36,11 @@ export default function Navbar() {
               <a className="noLink">contact</a>
             </Link>
           </li>
+        
+
+        <li>
+          <ThemeToggle/>
+        </li>
         </ul>
       </div>
     </nav>
