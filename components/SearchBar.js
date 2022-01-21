@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function SearchBar({ handleChange }) {
+export default function SearchBar({ inputValue, handleChange }) {
     return (
         <div className="searchBar">
-            <input type="text" onChange={handleChange} />
+            <input type="text" value={inputValue} onChange={handleChange} />
         </div>
     )
 }

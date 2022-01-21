@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from "react";
 
 export default function ThemeToggle() {
-    const [theme, setTheme] = useState();
+    const [theme, setTheme] = useState(); //non posso prelevare il valore dal localstorage da qui perchè non viene eseguito nel browser ma serverside (in next.js)
 
+    //Riferimento
+    //true = light theme
+    //false = dark theme
 
+    //Quando il componente viene renderizzato sul real dom e quindi posso accedere al localstorage del browser
     useEffect(() => {
-        console.log("TEMA", localStorage.getItem("theme"));
         if (localStorage.getItem("theme") != undefined) {
-            setTheme(localStorage.getItem("theme"))
+            console.log("TEMA", localStorage.getItem("theme"));
+            setTheme(JSON.parse(localStorage.getItem("theme")))
         } else {
-            setTheme("dark")
+            setTheme(false)
         }
     }, [])
 
     useEffect(() => {
-
         localStorage.setItem("theme", theme);
         console.log("cambiato", theme);
-        theme == "light" ? document.documentElement.style.setProperty("--luminosity", "0") : document.documentElement.style.setProperty("--luminosity", "255");
+        theme ?
+            document.documentElement.style.setProperty("--luminosity", "0") :
+            document.documentElement.style.setProperty("--luminosity", "255");
     }, [theme])
-
 
     return (
         <div className="ThemeToggle">
-            <button type="button" onClick={() => setTheme(theme == "light" ? "dark" : "light")}>
-                toggle mode
+            <button type="button" onClick={() => setTheme(!theme)}>
+                <a>{theme ? "dark" : "light"}</a>
             </button>
         </div>
     )
-
-
 
 }

@@ -30,15 +30,19 @@ export async function getStaticProps() {
 }
 
 
+
+
+
+
 export default function Blog({ tags, posts }) {
   const [postsTitles, setPostsTitles] = useState(posts);
   const [activePosts, setActivePosts] = useState(posts);
   const [postsTags, setPostsTags] = useState(tags);
-  const [activeTags, setActiveTags] = useState([]);
+  const [activeTags, setActiveTags] = useState<String[]>([]);
   const [inputText, setInputText] = useState("");
 
 
-  async function handleTags(tagName) {
+  async function handleTags(tagName: string) {
     if (activeTags.indexOf(tagName) == -1) {
       setActiveTags([...activeTags, tagName])
     } else {
@@ -83,16 +87,16 @@ export default function Blog({ tags, posts }) {
         <h1>Blog</h1>
   
 
-        <SearchBar handleChange={(e) => setInputText(e.target.value)}></SearchBar>
+        <SearchBar inputValue={inputText} handleChange={(e) => setInputText(e.target.value)}></SearchBar>
         <br />
 
         {/* TAGS */}
         {(postsTags) ?
           <div className="tags">
+            <button className={activeTags.length == 0 ? "tag hidden" : "tag"} onClick={() => { setActiveTags([]); setActivePosts(posts); }}>&#10005;</button>
             {postsTags.map((tag) => (
               <button key={tag.id} className={activeTags.indexOf(tag.name) == -1 ? "tag" : "tag tagActive"} type="button" onClick={() => handleTags(tag.name)}>{tag.name}</button>
             ))}
-            <button className={activeTags.length == 0 ? "tag hidden" : "tag"} onClick={() => { setActiveTags([]); setActivePosts(posts); }}>&#10005;</button>
           </div>
           : null}
 

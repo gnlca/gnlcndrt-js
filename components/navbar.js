@@ -15,7 +15,7 @@ export default function Navbar() {
             <Logo className="" fill="var(--Bianco)" width={85} />
           </a>
         </Link>
-        <ul className="inlineGrid center col4auto colGap07 noList inline noMarginPadding">
+        <ul className="inlineGrid center justifyCenter alignCenter col4auto colGap07 noList inline noMarginPadding">
           {/* <li>
             <Link href="/about">
               <a className="noLink">about</a>
@@ -36,11 +36,10 @@ export default function Navbar() {
               <a className="noLink">contact</a>
             </Link>
           </li>
-        
 
-        <li>
-          <ThemeToggle/>
-        </li>
+          <li>
+            <ThemeToggle />
+          </li>
         </ul>
       </div>
     </nav>

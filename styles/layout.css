@@ -158,7 +158,7 @@
 }
 
 .justifyCenter {
-  justify-self: center;
+  justify-items: center;
 }
 .justifyEnd {
   justify-self: end;
