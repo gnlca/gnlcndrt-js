@@ -9,7 +9,7 @@ export default function ThemeToggle() {
 
     //Quando il componente viene renderizzato sul real dom e quindi posso accedere al localstorage del browser
     useEffect(() => {
-        if (localStorage.getItem("theme") != undefined) {
+        if (!!localStorage.getItem("theme")) {
             console.log("TEMA", localStorage.getItem("theme"));
             setTheme(JSON.parse(localStorage.getItem("theme")))
         } else {
@@ -27,7 +27,7 @@ export default function ThemeToggle() {
 
     return (
         <div className="ThemeToggle">
-            <button type="button" onClick={() => setTheme(!theme)}>
+            <button type="button" onClick={() => setTheme(prevTheme => !prevTheme)}>
                 <a>{theme ? "dark" : "light"}</a>
             </button>
         </div>

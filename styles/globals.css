@@ -15,7 +15,8 @@ body {
   /* luminosity (default 255) lo assegno al testo => bianco al testo, nero al bg*/
   --luminosity:255;
   --bianco: rgb(var(--luminosity), var(--luminosity), var(--luminosity));
-  --dark: calc(calc(var(--luminosity) - 255) * (-1));
+  /* --dark: calc(calc(var(--luminosity) - 255) * (-1)); */
+  --dark: calc(255 - var(--luminosity));
   --nero: rgb(var(--dark), var(--dark), var(--dark));
   --nsecondi: 0.225s;
   --nuBelluVerde: #9dff1d;
